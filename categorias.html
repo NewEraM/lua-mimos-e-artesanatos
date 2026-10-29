@@ -1,0 +1,426 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore as categorias da Lua Mimos e Artesanatos.">
+  <title>Categorias | Lua Mimos e Artesanatos</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --roxo: #342338;
+      --roxo-claro: #895b83;
+      --creme: #fbf6f0;
+      --texto: #33263a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: #fffdfb;
+      color: var(--texto);
+      font-family: "DM Sans", sans-serif;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    h1, h2, h3, .brand-name {
+      font-family: "Playfair Display", serif;
+    }
+
+    .navbar, footer {
+      background: var(--roxo);
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      border: 1px solid #d9b987;
+      border-radius: 50%;
+      color: #f6dfb8;
+      font-size: 26px;
+    }
+
+    .brand-name {
+      color: #fff;
+      font-size: 1.25rem;
+      line-height: 1.1;
+    }
+
+    .brand-sub {
+      display: block;
+      margin-top: 3px;
+      color: #e8d9e4;
+      font-size: .7rem;
+    }
+
+    .navbar .nav-link {
+      color: #f7edf5;
+    }
+
+    .navbar .nav-link:hover,
+    .navbar .nav-link.active {
+      color: #e9c995;
+    }
+
+    .page-header {
+      padding: 65px 0;
+      background: var(--creme);
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--roxo-claro);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .page-header h1 {
+      margin: 12px 0;
+      color: var(--roxo);
+      font-size: clamp(2.3rem, 5vw, 3.3rem);
+    }
+
+    .page-header p {
+      max-width: 630px;
+      margin: auto;
+      color: #746a76;
+      line-height: 1.8;
+    }
+
+    .categories-section {
+      padding: 60px 0 75px;
+    }
+
+    .category-card {
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid #eee2e8;
+      border-radius: 18px;
+      background: #fff;
+      color: var(--texto);
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(52, 35, 56, .04);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 30px rgba(52, 35, 56, .10);
+      color: var(--roxo-claro);
+    }
+
+    .category-image {
+      width: 100%;
+      height: 245px;
+      object-fit: cover;
+      background: var(--creme);
+    }
+
+    .category-content {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 24px;
+    }
+
+    .category-content h2 {
+      margin: 10px 0;
+      color: var(--roxo);
+      font-size: 1.5rem;
+    }
+
+    .category-content p {
+      flex: 1;
+      color: #746a76;
+      line-height: 1.7;
+    }
+
+    .category-label {
+      color: var(--roxo-claro);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .category-link {
+      margin-top: 12px;
+      font-weight: 700;
+      color: var(--roxo-claro);
+    }
+
+    .cta {
+      padding: 45px 0;
+      background: var(--creme);
+      text-align: center;
+    }
+
+    .cta h2 {
+      color: var(--roxo);
+    }
+
+    .btn-roxo {
+      display: inline-block;
+      padding: 11px 24px;
+      border: 1px solid var(--roxo-claro);
+      border-radius: 30px;
+      background: var(--roxo-claro);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .btn-roxo:hover {
+      background: var(--roxo);
+      border-color: var(--roxo);
+      color: #fff;
+    }
+
+    footer {
+      padding: 28px 0;
+      color: #f8edf5;
+    }
+
+    footer a {
+      color: #ead9e8;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #e9c995;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    @media (max-width: 575.98px) {
+      .page-header {
+        padding: 45px 15px;
+      }
+
+      .categories-section {
+        padding: 35px 0 50px;
+      }
+
+      .category-image {
+        height: 210px;
+      }
+
+      .category-content {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- MENU -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container py-2">
+
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <span class="brand-mark">☾</span>
+        <span>
+          <span class="brand-name">Lua Mimos</span>
+          <span class="brand-sub">e Artesanatos</span>
+        </span>
+      </a>
+
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#menu"
+              aria-controls="menu" aria-expanded="false"
+              aria-label="Abrir menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto gap-lg-2">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="loja.html">Loja</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="categorias.html">Categorias</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sobre.html">Sobre nós</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contato.html">Contato</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- CABEÇALHO -->
+    <header class="page-header">
+      <div class="container">
+        <div class="eyebrow">Encontre seu próximo mimo</div>
+        <h1>Nossas categorias</h1>
+        <p>
+          Explore nossas opções de brincos, peças artesanais e presentes.
+          Encontre detalhes delicados para você ou para alguém especial.
+        </p>
+      </div>
+    </header>
+
+    <!-- CATEGORIAS -->
+    <section class="categories-section">
+      <div class="container">
+
+        <div class="row g-4">
+
+          <!-- BRINCOS -->
+          <div class="col-12 col-md-6 col-lg-4">
+            <a class="category-card" href="loja.html?categoria=brincos">
+
+              <img
+                class="category-image"
+                src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=900&q=85"
+                alt="Brincos e acessórios delicados"
+                loading="lazy"
+              >
+
+              <div class="category-content">
+                <span class="category-label">Estilo e delicadeza</span>
+                <h2>Brincos</h2>
+                <p>
+                  Acessórios para complementar seu estilo e deixar
+                  cada ocasião ainda mais especial.
+                </p>
+                <span class="category-link">Ver brincos →</span>
+              </div>
+
+            </a>
+          </div>
+
+          <!-- ARTESANATOS -->
+          <div class="col-12 col-md-6 col-lg-4">
+            <a class="category-card" href="loja.html?categoria=artesanatos">
+
+              <img
+                class="category-image"
+                src="https://images.unsplash.com/photo-1493106641515-6b5631de4bb9?auto=format&fit=crop&w=900&q=85"
+                alt="Materiais e peças artesanais"
+                loading="lazy"
+              >
+
+              <div class="category-content">
+                <span class="category-label">Criatividade e carinho</span>
+                <h2>Artesanatos</h2>
+                <p>
+                  Conheça criações artesanais cheias de personalidade,
+                  cuidado e pequenos detalhes.
+                </p>
+                <span class="category-link">Ver artesanatos →</span>
+              </div>
+
+            </a>
+          </div>
+
+          <!-- PRESENTES -->
+          <div class="col-12 col-md-6 col-lg-4">
+            <a class="category-card" href="loja.html?categoria=presentes">
+
+              <img
+                class="category-image"
+                src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=900&q=85"
+                alt="Presente embrulhado para uma pessoa especial"
+                loading="lazy"
+              >
+
+              <div class="category-content">
+                <span class="category-label">Surpreenda alguém</span>
+                <h2>Presentes</h2>
+                <p>
+                  Ideias para aniversários, datas especiais ou
+                  para demonstrar carinho sem precisar de uma ocasião.
+                </p>
+                <span class="category-link">Encontrar presentes →</span>
+              </div>
+
+            </a>
+          </div>
+
+        </div>
+
+        <div class="text-center mt-5">
+          <a href="loja.html" class="btn-roxo">Explorar a loja</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CHAMADA FINAL -->
+    <section class="cta">
+      <div class="container">
+        <h2>Um pequeno mimo pode transformar o dia ♡</h2>
+        <p class="text-secondary mt-3 mb-4">
+          Descubra as peças disponíveis na Lua Mimos e Artesanatos.
+        </p>
+        <a href="loja.html" class="btn-roxo">Ver todos os produtos</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <div class="container d-flex flex-column flex-md-row
+                justify-content-between align-items-center gap-3">
+
+      <span>
+        © <span id="ano"></span> Lua Mimos e Artesanatos
+      </span>
+
+      <nav class="footer-links" aria-label="Links do rodapé">
+        <a href="index.html">Início</a>
+        <a href="loja.html">Loja</a>
+        <a href="categorias.html">Categorias</a>
+        <a href="sobre.html">Sobre nós</a>
+        <a href="contato.html">Contato</a>
+      </nav>
+
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById("ano").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
